@@ -1,12 +1,13 @@
 <template name="athletesContainer">
 	<div class="container athleteContainer">
 		{{#each athletes}}
-		<div id="container"></div>
+		<div id="tweet"></div>
 		
-		<script>window.twttr = (function(d, s, id) {
+		<script>
+		window.twttr = (function(d, s, id) {
 		  var js, fjs = d.getElementsByTagName(s)[0],
-		    t = window.twttr || {};
-		  if (d.getElementById(id)) return t;
+			t = window.twttr || {};
+		  if (d.getElementById(id)) return;
 		  js = d.createElement(s);
 		  js.id = id;
 		  js.src = "https://platform.twitter.com/widgets.js";
@@ -14,22 +15,26 @@
 
 		  t._e = [];
 		  t.ready = function(f) {
-		    t._e.push(f);
+			t._e.push(f);
 		  };
 
 		  return t;
 		}(document, "script", "twitter-wjs"));
 
-
-		twttr.widgets.createTweet(
-		  '822135866868961280',
-		  document.getElementById('container'),
-		  {
-		    align: 'left'
-		  })
-		  .then(function (el) {
-		    console.log("Tweet displayed.")
-		  });
+		twttr.ready(
+			function(twttr){
+				twttr.widgets.createTweet(
+					'822212382852321282',
+					document.getElementById('tweet'),
+				{
+					align: 'left'
+				})
+				.then(function (el) {
+					console.log("Tweet displayed.")
+				});
+			}
+		)
+		
 
 		</script>
 			
